@@ -1,2 +1,2 @@
-# crnr-assignment
+# hcsm-assignment
 Assignment on healthcare project
