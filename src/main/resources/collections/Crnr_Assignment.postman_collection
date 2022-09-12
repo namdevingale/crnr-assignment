@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "23ff87a9-221b-4141-8b32-4247c731d446",
+		"name": "Crnr Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Patient",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"patient2\",\r\n    \"dateOfBirth\": \"1987-06-08T00:00:00\",\r\n    \"gender\": \"MALE\",\r\n    \"primaryContactCountryCode\": \"+91\",\r\n    \"primaryContactNumber\": 9873476321,\r\n    \"secondaryContactCountryCode\": \"+91\",\r\n    \"secondaryContactNumber\": 9873489076,\r\n    \"addresses\": [\r\n            {\r\n                \"addressType\": \"PRESENT\",\r\n                \"addressLineOne\": \"#5674, 4th main, JP nagar\",\r\n                \"addressLineTwo\": \"near SB college\",\r\n                \"city\": \"Bengaluru\",\r\n                \"state\": \"Karnataka\",\r\n                \"country\": \"India\",\r\n                \"pinCode\": 560042\r\n            },\r\n            {\r\n                \"addressType\": \"OFFICE\",\r\n                \"addressLineOne\": \"#7641, 1st cross, 2nd main\",\r\n                \"addressLineTwo\": \"Koramangala\",\r\n                \"city\": \"Bengaluru\",\r\n                \"state\": \"Karnataka\",\r\n                \"country\": \"India\",\r\n                \"pinCode\": 560029\r\n            }\r\n        ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/v1/api/patients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"v1",
+						"api",
+						"patients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Patient by Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/v1/api/patients/PT_00016",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"v1",
+						"api",
+						"patients",
+						"PT_00016"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Patients by filter",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/v1/api/patients/patientbyfilter?page=0&size=10&order=desc&search=patie",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"v1",
+						"api",
+						"patients",
+						"patientbyfilter"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						},
+						{
+							"key": "order",
+							"value": "desc"
+						},
+						{
+							"key": "search",
+							"value": "patie"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Patient",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"patient3\",\r\n    \"dateOfBirth\": \"1987-03-16T00:00:00\",\r\n    \"gender\": \"MALE\",\r\n    \"primaryContactCountryCode\": \"+91\",\r\n    \"primaryContactNumber\": 9873444321,\r\n    \"secondaryContactCountryCode\": \"+91\",\r\n    \"secondaryContactNumber\": 9873447865,\r\n    \"addressList\": [\r\n             {\r\n                \"addressId\": 31,\r\n                \"addressType\": \"PRESENT\",\r\n                \"addressLineOne\": \"#7764, 5th main, Vijaynagar\",\r\n                \"addressLineTwo\": \"near Maruti Mandir\",\r\n                \"city\": \"Bengaluru\",\r\n                \"state\": \"Karnataka\",\r\n                \"country\": \"India\",\r\n                \"pinCode\": 560048\r\n            },\r\n            {\r\n                \"addressType\": \"OFFICE\",\r\n                \"addressLineOne\": \"#6533, 1st cross, 2nd main\",\r\n                \"addressLineTwo\": \"Koramangala\",\r\n                \"city\": \"Bengaluru\",\r\n                \"state\": \"Karnataka\",\r\n                \"country\": \"India\",\r\n                \"pinCode\": 560029\r\n            }\r\n        ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/v1/api/patients/PT_00018",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"v1",
+						"api",
+						"patients",
+						"PT_00018"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Patient",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/v1/api/patients/PT_00017",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"v1",
+						"api",
+						"patients",
+						"PT_00017"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Countries",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://restcountries.com/v2/all",
+					"protocol": "https",
+					"host": [
+						"restcountries",
+						"com"
+					],
+					"path": [
+						"v2",
+						"all"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

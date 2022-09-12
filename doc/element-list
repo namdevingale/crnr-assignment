@@ -1,0 +1,12 @@
+com.crnr.hcms.assignment
+com.crnr.hcms.assignment.constant
+com.crnr.hcms.assignment.controller
+com.crnr.hcms.assignment.dto
+com.crnr.hcms.assignment.enums
+com.crnr.hcms.assignment.model
+com.crnr.hcms.assignment.model.helper
+com.crnr.hcms.assignment.query
+com.crnr.hcms.assignment.repository
+com.crnr.hcms.assignment.service
+com.crnr.hcms.assignment.service.impl
+com.crnr.hcms.assignment.util
