@@ -105,7 +105,7 @@ public class PatientApi {
 	@DeleteMapping("/{patient_id}")
 	public ResponseEntity<ResponseDto> deletePatient(@PathVariable("patient_id") String patientId) {
 
-		log.info("LandingPageAPI --> deleteLandingPage");
+		log.info("PatientApi --> deletePatient");
 		return patientService.deletePatient(patientId);
 	}
 
@@ -130,6 +130,7 @@ public class PatientApi {
 			@RequestParam(value = "status", required = false) String status,
 			@RequestParam(value = "search", required = false) String search,
 			@RequestParam(value = "order", required = true) String order) {
+		log.info("PatientApi --> getPatientByFilter");
 		return patientService.getPatientByFilter(Filter.builder().page(page).size(size).gender(gender).status(status)
 				.search(search).order(order).build());
 	}
