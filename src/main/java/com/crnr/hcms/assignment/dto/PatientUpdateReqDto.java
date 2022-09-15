@@ -1,7 +1,6 @@
 package com.crnr.hcms.assignment.dto;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -34,7 +33,7 @@ public class PatientUpdateReqDto implements Serializable {
 	private String name;
 	
 	@NotNull(message = "Date of birth is mandatory")
-    private LocalDateTime dateOfBirth;
+    private String dateOfBirth;
 	
 	@NotBlank(message = "Gender is mandatory")
 	// @Pattern(regexp = "MALE|FEMALE|TRANSGENDER", flags = Pattern.Flag.CASE_INSENSITIVE)

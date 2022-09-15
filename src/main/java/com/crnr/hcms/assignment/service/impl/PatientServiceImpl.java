@@ -1,5 +1,7 @@
 package com.crnr.hcms.assignment.service.impl;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -60,6 +62,8 @@ public class PatientServiceImpl implements PatientService {
 	@Autowired
 	private EntityManager entityManager;
 
+	private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
 	/**
 	 * Create a single {@code Patient} and return the created REST resource. Then
 	 * return it through Spring Web's {@code ResponseEntity} fluent API.
@@ -76,6 +80,7 @@ public class PatientServiceImpl implements PatientService {
 		try {
 			// convert DTO to entity
 			PatientModel patientModelRequest = modelMapper.map(patientDtoRequest, PatientModel.class);
+			patientModelRequest.setDateOfBirth(LocalDateTime.parse(patientDtoRequest.getDateOfBirth(), formatter));
 			patientModelRequest.setStatus("ACTIVE");
 			List<AddressModel> addresses = new ArrayList<>();
 			addresses.addAll(getAddressModels(patientDtoRequest.getAddresses()));
@@ -147,6 +152,8 @@ public class PatientServiceImpl implements PatientService {
 			if (existingPatientModel.isPresent()) {
 				BeanUtils.copyProperties(patientUpdateReqDto, existingPatientModel.get(),
 						BeanUtilPropertyCheck.getNullPropertyNames(patientUpdateReqDto));
+				existingPatientModel.get()
+						.setDateOfBirth(LocalDateTime.parse(patientUpdateReqDto.getDateOfBirth(), formatter));
 				existingPatientModel.get().getAddresses().clear();
 				existingPatientModel.get().getAddresses()
 						.addAll(getAddressModels(patientUpdateReqDto.getAddressList()));

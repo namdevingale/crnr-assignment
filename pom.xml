@@ -132,6 +132,13 @@
 			<artifactId>hibernate-jpamodelgen</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+    <groupId>org.eclipse.platform</groupId>
+    <artifactId>org.eclipse.swt</artifactId>
+    <version>1.0.0</version>
+    <scope>system</scope>
+    <systemPath>${project.basedir}/local_jars/swt.jar</systemPath>
+</dependency>
 	</dependencies>
 	
 	<build>

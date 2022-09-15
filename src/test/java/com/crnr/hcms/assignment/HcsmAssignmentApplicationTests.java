@@ -3,8 +3,6 @@ package com.crnr.hcms.assignment;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.security.SecureRandom;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -165,10 +163,7 @@ class HcsmAssignmentApplicationTests {
 		PatientDto patientDto = new PatientDto();
 		patientDto.setName("patient" + Long.valueOf(new SecureRandom().nextInt(9999)));
 		patientDto.setGender("MALE");
-		String dateString = "1995-08-16 00:00:00";
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		LocalDateTime dateTime = LocalDateTime.parse(dateString, formatter);
-		patientDto.setDateOfBirth(dateTime);
+		patientDto.setDateOfBirth("1995-08-16 00:00:00");
 		patientDto.setPrimaryContactCountryCode("+91");
 		patientDto.setPrimaryContactNumber(9867854321L);
 		patientDto.setSecondaryContactCountryCode("+91");
@@ -191,10 +186,7 @@ class HcsmAssignmentApplicationTests {
 		PatientUpdateReqDto patientDto = new PatientUpdateReqDto();
 		patientDto.setName("patient" + Long.valueOf(new SecureRandom().nextInt(9999)));
 		patientDto.setGender("MALE");
-		String dateString = "1999-03-23 00:00:00";
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		LocalDateTime dateTime = LocalDateTime.parse(dateString, formatter);
-		patientDto.setDateOfBirth(dateTime);
+		patientDto.setDateOfBirth("1999-03-23 00:00:00");
 		patientDto.setPrimaryContactCountryCode("+91");
 		patientDto.setPrimaryContactNumber(9867854321L);
 		patientDto.setSecondaryContactCountryCode("+91");
