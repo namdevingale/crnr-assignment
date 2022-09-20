@@ -33,12 +33,23 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import static org.eclipse.swt.events.SelectionListener.*;
 
 public class HcsmAssignmentSwtApplication {
+	
+	protected Shell shell;
+	
+	/**
+	 * Open the window.
+	 */
+	public void open() {
+		Display.getDefault();
+		createContents();
+		shell.layout();
+	}
 
-	public HcsmAssignmentSwtApplication(Shell shell, ArrayList<PatientDto> patientDtoLst) {
+	protected void displayPatientList(Shell shell, ArrayList<PatientDto> patientDtoLst) {
 		HttpHeaders headers = new HttpHeaders();
 		RestTemplate restTemplate = new RestTemplate();
 		ObjectMapper mapper = new ObjectMapper();
-
+		
 		final Table table = new Table(shell, SWT.BORDER | SWT.V_SCROLL | SWT.FULL_SELECTION);
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
@@ -383,8 +394,12 @@ public class HcsmAssignmentSwtApplication {
 			}
 		});
 	}
-
-	public static void main(String[] args) {
+	
+	public Shell getShell() {
+		return shell;
+	}
+	
+	protected void createContents() {
 		HttpHeaders headers = new HttpHeaders();
 		RestTemplate restTemplate = new RestTemplate();
 		String url = "http://localhost:9090/v1/api/patients/patientbyfilter?page=0&size=9999999&order=desc";
@@ -394,8 +409,7 @@ public class HcsmAssignmentSwtApplication {
 			ArrayList<PatientDto> patientDtoLst = mapper.convertValue(response.getBody().getData(),
 					new TypeReference<ArrayList<PatientDto>>() {
 					});
-			Display display = new Display();
-			Shell shell = new Shell(display);
+			shell = new Shell();
 			shell.setText("Healthcare Management System");
 			shell.setLayout(new GridLayout(1, false));
 			Text searchText = new Text(shell, SWT.SINGLE | SWT.BORDER);
@@ -415,7 +429,7 @@ public class HcsmAssignmentSwtApplication {
 					ArrayList<PatientDto> searchPatientDtoLst = mapper.convertValue(searchResponse.getBody().getData(),
 							new TypeReference<ArrayList<PatientDto>>() {
 							});
-					new HcsmAssignmentSwtApplication(shell, searchPatientDtoLst);
+					new HcsmAssignmentSwtApplication().displayPatientList(shell, searchPatientDtoLst);
 				}
 			}));
 
@@ -594,15 +608,29 @@ public class HcsmAssignmentSwtApplication {
 				dialog.open();
 			}));
 			shell.setDefaultButton(searchButton);
-			new HcsmAssignmentSwtApplication(shell, patientDtoLst);
+			new HcsmAssignmentSwtApplication().displayPatientList(shell, patientDtoLst);
 			shell.open();
-			while (!shell.isDisposed()) {
-				if (!display.readAndDispatch())
-					display.sleep();
-			}
-			display.dispose();
+			//display.dispose();
 		} catch (Exception e) {
 			System.out.println("Error in Api calling " + e.getMessage());
 		}
+	}
+	
+	/**
+	 * Run the SWT event loop until this shell is disposed.
+	 * @param display
+	 */
+	public void eventLoop(Display display) {
+		while (!shell.isDisposed()) {
+			if (!display.readAndDispatch()) {
+				display.sleep();
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		HcsmAssignmentSwtApplication window = new HcsmAssignmentSwtApplication();
+		window.open();
+		window.eventLoop(Display.getDefault());
 	}
 }
